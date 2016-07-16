@@ -1,19 +1,21 @@
-import controllers.HelloController;
-
-import javax.xml.ws.Endpoint;
-
-//public class Main {
-
-    //public static void main(String[] args){
-    //    Endpoint.publish("http://localhost:51000/hello", new HelloController());
-    //}
-
-//}
+import spark.Request;
+import spark.Response;
 
 import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args) {
-        get("/hello", (req, res) -> "Hello World");
+        configureServer();
+
+        get("/hello", (Request req, Response res) -> {
+            return "Hello World";
+        });
+    }
+
+    private static void configureServer() {
+        port(51000);
+
+        int maxThreads = 8;
+        threadPool(maxThreads);
     }
 }

@@ -1,3 +1,5 @@
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import controllers.HelloWorldController;
 import controllers.UsersController;
 import spark.Spark;
@@ -17,7 +19,8 @@ public class Main {
     }
 
     private static void RegisterControllers() {
-        new HelloWorldController();
-        new UsersController();
+        Injector injector = Guice.createInjector(new InjectionModule());
+        injector.getInstance(HelloWorldController.class);
+        injector.getInstance(UsersController.class);
     }
 }

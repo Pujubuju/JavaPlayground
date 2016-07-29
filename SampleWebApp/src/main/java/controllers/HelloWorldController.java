@@ -6,8 +6,8 @@ import static spark.Spark.*;
 
 public class HelloWorldController {
     public HelloWorldController(){
-        get("/hello", (Request req, Response res) -> {
-            return "Hello World";
+        get("/hello/:name", (Request req, Response res) -> {
+            return "Hello "  + req.params(":name") + "! :)";
         });
     }
 }

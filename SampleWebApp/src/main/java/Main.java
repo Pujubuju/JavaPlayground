@@ -1,16 +1,12 @@
-import spark.Request;
-import spark.Response;
+import controllers.HelloWorldController;
+import controllers.UsersController;
 import spark.Spark;
-
 import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args) {
         configureServer();
-
-        get("/hello", (Request req, Response res) -> {
-            return "Hello World";
-        });
+        RegisterControllers();
     }
 
     private static void configureServer() {
@@ -18,5 +14,10 @@ public class Main {
         int maxThreads = 8;
         threadPool(maxThreads);
         Spark.staticFileLocation("/public");
+    }
+
+    private static void RegisterControllers() {
+        new HelloWorldController();
+        new UsersController();
     }
 }
